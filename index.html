@@ -1,0 +1,1606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Transatlantic Sisterhood</title>
+  <link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Bitter:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #f5ede0;
+      --coral: #e07a5f;
+      --coral-light: #e8957f;
+      --dark: #3a2e28;
+      --mid: #6b5c52;
+      --header-bg: #ede0cf;
+      --footer-bg: #2e2218;
+      --parchment: #f0e6d3;
+    }
+
+    body {
+      font-family: 'Bitter', serif;
+      background-color: var(--cream);
+      color: var(--dark);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background-color: var(--footer-bg);
+      text-align: center;
+      padding: 20px 40px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .site-title {
+      font-family: 'Young Serif', serif;
+      color: var(--coral-light);
+      font-size: 1.4rem;
+      letter-spacing: 0.06em;
+      margin-bottom: 16px;
+      font-style: normal;
+      font-weight: 400;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    .site-title:hover { color: var(--coral); }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+    }
+
+    nav a {
+      font-family: 'Young Serif', serif;
+      font-size: 0.95rem;
+      color: var(--coral-light);
+      text-decoration: none;
+      letter-spacing: 0.04em;
+      padding-bottom: 14px;
+      border-bottom: 2px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      cursor: pointer;
+      opacity: 0.75;
+    }
+
+    nav a:hover, nav a.active {
+      color: var(--coral-light);
+      border-bottom-color: var(--coral-light);
+      opacity: 1;
+    }
+
+    /* ── PAGES ── */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      width: 100%;
+      height: 80vh;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .hero img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 30%;
+      filter: grayscale(25%) sepia(15%);
+      transform: scale(1.06);
+      transition: transform 0.7s ease;
+    }
+
+    .hero:hover img { transform: scale(1.0); }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(60,40,28,0.30);
+      transition: background 0.5s ease;
+    }
+
+    .hero:hover .hero-overlay { background: rgba(40,25,15,0.78); }
+
+    .hero-title {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: 'Young Serif', serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      font-style: italic;
+      color: var(--coral-light);
+      line-height: 1.1;
+      text-align: center;
+      white-space: nowrap;
+      text-shadow: 0 2px 20px rgba(0,0,0,0.25);
+      transition: opacity 0.35s ease, transform 0.35s ease;
+    }
+
+    .hero:hover .hero-title {
+      opacity: 0;
+      transform: translate(-50%, -40%);
+    }
+
+    .hero-description {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px;
+      opacity: 0;
+      transition: opacity 0.5s ease 0.15s;
+      pointer-events: none;
+    }
+
+    .hero:hover .hero-description { opacity: 1; }
+
+    .hero-description p {
+      font-family: 'Young Serif', serif;
+      font-size: clamp(1.1rem, 2vw, 1.55rem);
+      font-style: italic;
+      color: var(--cream);
+      text-align: center;
+      line-height: 1.85;
+      max-width: 760px;
+      text-shadow: 0 2px 14px rgba(0,0,0,0.5);
+    }
+
+    /* ── INNER PAGE HEADER ── */
+    .page-hero {
+      background-color: var(--footer-bg);
+      padding: 52px 40px 44px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .page-hero h1 {
+      font-family: 'Young Serif', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-style: italic;
+      color: var(--coral-light);
+    }
+
+    /* ── IMAGE CAPTION — home only ── */
+    .img-caption {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 16px 40px;
+      background-color: var(--cream);
+      border-top: 1px solid rgba(160,120,90,0.15);
+    }
+
+    .caption-title {
+      font-family: 'Young Serif', serif;
+      font-size: 0.82rem;
+      font-style: italic;
+      color: var(--dark);
+      letter-spacing: 0.02em;
+    }
+
+    .caption-divider {
+      color: var(--coral);
+      font-size: 0.75rem;
+      opacity: 0.6;
+    }
+
+    .caption-sub {
+      font-family: 'Bitter', serif;
+      font-size: 0.78rem;
+      color: var(--mid);
+      letter-spacing: 0.03em;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background-color: var(--footer-bg);
+      color: rgba(245,237,224,0.7);
+      padding: 32px 60px 20px;
+    }
+
+    .footer-inner {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(245,237,224,0.1);
+    }
+
+    .footer-brand .footer-title {
+      font-family: 'Young Serif', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--coral-light);
+      margin-bottom: 10px;
+    }
+
+    .footer-brand .footer-authors {
+      font-size: 0.85rem;
+      color: rgba(245,237,224,0.45);
+      font-style: italic;
+    }
+
+    .footer-nav h4 {
+      font-family: 'Young Serif', serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--coral-light);
+      margin-bottom: 16px;
+    }
+
+    .footer-nav ul { list-style: none; }
+    .footer-nav ul li { margin-bottom: 10px; }
+    .footer-nav ul li a {
+      font-size: 0.88rem;
+      color: rgba(245,237,224,0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+      cursor: pointer;
+    }
+    .footer-nav ul li a:hover { color: var(--coral-light); }
+
+    .footer-team-btn {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 7px 18px;
+      border: 1px solid rgba(232,149,127,0.4);
+      border-radius: 2px;
+      font-family: 'Young Serif', serif;
+      font-size: 0.82rem;
+      color: var(--coral-light);
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s;
+      letter-spacing: 0.04em;
+    }
+
+    .footer-team-btn:hover {
+      background: rgba(232,149,127,0.1);
+      border-color: var(--coral-light);
+    }
+
+    .footer-bottom { display: none; }
+
+    /* ══════════════════════════════════
+       IMPACT PAGE
+    ══════════════════════════════════ */
+    #page-impact {
+      background-color: var(--parchment);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ══════════════════════════════════
+       IMPORTANT EVENTS PAGE — BOOK
+    ══════════════════════════════════ */
+    #page-events {
+      background-color: var(--footer-bg);
+      min-height: 100vh;
+      flex-direction: column;
+      align-items: center;
+      padding-bottom: 80px;
+    }
+
+    #page-events.active {
+      display: flex;
+    }
+
+    #page-events .page-hero {
+      width: 100%;
+    }
+
+    /* Book container */
+    .book-scene {
+      perspective: 1800px;
+      width: min(980px, 96vw);
+      margin: 44px auto 0;
+    }
+
+    /* The closed book sitting on the scene */
+    .book {
+      position: relative;
+      width: 100%;
+      transform-style: preserve-3d;
+    }
+
+    /* Book cover — shown when closed */
+    .book-cover {
+      width: 100%;
+      background: var(--footer-bg);
+      border: 1px solid rgba(232,149,127,0.25);
+      border-radius: 3px 10px 10px 3px;
+      padding: 84px 72px;
+      text-align: center;
+      cursor: pointer;
+      position: relative;
+      box-shadow: 10px 12px 34px rgba(0,0,0,0.52), inset -4px 0 8px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 360px;
+    }
+
+    .book-cover:hover {
+      transform: translateY(-3px) rotate(-0.5deg);
+      box-shadow: 10px 12px 32px rgba(0,0,0,0.6), inset -4px 0 8px rgba(0,0,0,0.3);
+    }
+
+    /* Spine line on left of cover */
+    .book-cover::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 18px;
+      background: rgba(232,149,127,0.1);
+      border-right: 1px solid rgba(232,149,127,0.2);
+      border-radius: 3px 0 0 3px;
+    }
+
+    .book-cover-title {
+      font-family: 'Young Serif', serif;
+      font-size: 2rem;
+      font-style: italic;
+      color: var(--coral-light);
+      letter-spacing: 0.04em;
+      margin-bottom: 14px;
+    }
+
+    .book-cover-sub {
+      font-family: 'Bitter', serif;
+      font-size: 0.88rem;
+      color: rgba(245,237,224,0.35);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .book-cover-ornament {
+      width: 60px;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--coral), transparent);
+      margin: 16px auto;
+      opacity: 0.5;
+    }
+
+    .book-cover-hint {
+      margin-top: 28px;
+      font-family: 'Young Serif', serif;
+      font-size: 0.72rem;
+      font-style: italic;
+      color: rgba(232,149,127,0.4);
+      letter-spacing: 0.08em;
+    }
+
+    /* Open book spread */
+    .book-spread {
+      display: none;
+      width: 100%;
+      position: relative;
+    }
+
+    .book-spread.open {
+      display: block;
+    }
+
+    /* Individual double-page spread */
+    .book-page {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      width: 100%;
+      background: var(--parchment);
+      border-radius: 2px 6px 6px 2px;
+      box-shadow: 6px 6px 24px rgba(0,0,0,0.5);
+      overflow: hidden;
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transform: rotateY(0deg);
+      transform-style: preserve-3d;
+      backface-visibility: hidden;
+    }
+
+    .book-page.active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      position: relative;
+    }
+
+    .book-page.turn-next-out,
+    .book-page.turn-prev-out,
+    .book-page.turn-next-in,
+    .book-page.turn-prev-in {
+      visibility: visible;
+      pointer-events: none;
+    }
+
+    .book-page.turn-next-out { animation: pageTurnNextOut 0.6s ease forwards; transform-origin: left center; z-index: 3; }
+    .book-page.turn-prev-out { animation: pageTurnPrevOut 0.6s ease forwards; transform-origin: right center; z-index: 3; }
+    .book-page.turn-next-in  { animation: pageTurnNextIn 0.6s ease forwards; transform-origin: right center; z-index: 2; }
+    .book-page.turn-prev-in  { animation: pageTurnPrevIn 0.6s ease forwards; transform-origin: left center; z-index: 2; }
+
+    @keyframes pageTurnNextOut {
+      from { opacity: 1; transform: perspective(1800px) rotateY(0deg); }
+      to   { opacity: 0; transform: perspective(1800px) rotateY(-18deg) translateX(-16px); }
+    }
+
+    @keyframes pageTurnPrevOut {
+      from { opacity: 1; transform: perspective(1800px) rotateY(0deg); }
+      to   { opacity: 0; transform: perspective(1800px) rotateY(18deg) translateX(16px); }
+    }
+
+    @keyframes pageTurnNextIn {
+      from { opacity: 0; transform: perspective(1800px) rotateY(18deg) translateX(16px); }
+      to   { opacity: 1; transform: perspective(1800px) rotateY(0deg) translateX(0); }
+    }
+
+    @keyframes pageTurnPrevIn {
+      from { opacity: 0; transform: perspective(1800px) rotateY(-18deg) translateX(-16px); }
+      to   { opacity: 1; transform: perspective(1800px) rotateY(0deg) translateX(0); }
+    }
+
+    /* Spine shadow in centre of spread */
+    .book-page::after {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 20px;
+      transform: translateX(-50%);
+      background: linear-gradient(to right,
+        rgba(0,0,0,0.12) 0%,
+        rgba(0,0,0,0.04) 40%,
+        rgba(0,0,0,0.04) 60%,
+        rgba(0,0,0,0.12) 100%);
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    /* Left page — image */
+    .book-left {
+      position: relative;
+      overflow: hidden;
+      min-height: 620px;
+      background: #eadfc9;
+      cursor: zoom-in;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 26px;
+    }
+
+    .book-left img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center center;
+      filter: sepia(12%) contrast(1.05);
+      display: block;
+    }
+
+    /* PIC5 special — blend sketch into page */
+    .book-left.sketch-blend {
+      background: var(--parchment);
+    }
+
+    .book-left.sketch-blend img {
+      mix-blend-mode: multiply;
+      object-fit: contain;
+      padding: 24px;
+    }
+
+    .book-page-hotspot {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 50%;
+      z-index: 4;
+      cursor: pointer;
+    }
+
+    .book-page-hotspot.prev { left: 0; }
+    .book-page-hotspot.next { right: 0; }
+
+    .book-page-hotspot.disabled {
+      pointer-events: none;
+      cursor: default;
+    }
+
+    .book-lightbox {
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 14, 10, 0.88);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      z-index: 999;
+    }
+
+    .book-lightbox.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .book-lightbox img {
+      max-width: min(1100px, 92vw);
+      max-height: 88vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      box-shadow: 0 18px 44px rgba(0,0,0,0.45);
+      filter: sepia(10%) contrast(1.04);
+      background: var(--parchment);
+    }
+
+    .book-lightbox-close {
+      position: absolute;
+      top: 18px;
+      right: 26px;
+      font-family: 'Young Serif', serif;
+      font-size: 1.8rem;
+      color: rgba(245,237,224,0.72);
+      cursor: pointer;
+      line-height: 1;
+    }
+
+    /* Right page — text */
+    .book-right {
+      padding: 52px 48px 52px 56px;
+      background: var(--parchment);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+    }
+
+    /* Subtle aged page lines */
+    .book-right::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        transparent,
+        transparent 31px,
+        rgba(160,120,90,0.07) 31px,
+        rgba(160,120,90,0.07) 32px
+      );
+      pointer-events: none;
+    }
+
+    .book-right-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .book-page-num {
+      font-family: 'Young Serif', serif;
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--coral);
+      opacity: 0.55;
+      margin-bottom: 20px;
+    }
+
+    .book-right h2 {
+      font-family: 'Young Serif', serif;
+      font-size: 1.3rem;
+      font-style: italic;
+      color: var(--dark);
+      margin-bottom: 18px;
+      line-height: 1.3;
+    }
+
+    .book-right p {
+      font-family: 'Bitter', serif;
+      font-size: 0.88rem;
+      line-height: 1.9;
+      color: var(--mid);
+    }
+
+    .book-close-btn {
+      font-family: 'Young Serif', serif;
+      font-size: 0.75rem;
+      font-style: italic;
+      color: rgba(245,237,224,0.25);
+      cursor: pointer;
+      text-align: center;
+      margin-top: 14px;
+      letter-spacing: 0.06em;
+      transition: color 0.2s;
+    }
+
+    .book-close-btn:hover { color: var(--coral-light); }
+    .impact-inner {
+      position: relative;
+      z-index: 2;
+      padding: 0 120px;
+    }
+
+    /* Section roman numeral label */
+    .impact-label {
+      text-align: center;
+      padding: 60px 40px 0;
+    }
+
+    .impact-label span {
+      font-family: 'Young Serif', serif;
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--coral);
+      opacity: 0.6;
+    }
+
+    /* Two-column block */
+    .impact-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      max-width: 1100px;
+      margin: 36px auto 0;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.85s ease, transform 0.85s ease;
+    }
+
+    .impact-block.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .impact-block.reverse { direction: rtl; }
+    .impact-block.reverse > * { direction: ltr; }
+
+    .impact-img-wrap {
+      position: relative;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+
+    .impact-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: sepia(8%) contrast(1.04);
+      transition: transform 0.7s ease;
+    }
+
+    .impact-img-wrap:hover img { transform: scale(1.04); }
+
+    .impact-img-caption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 9px 14px;
+      background: rgba(46,34,24,0.62);
+      font-family: 'Bitter', serif;
+      font-size: 0.7rem;
+      font-style: italic;
+      color: rgba(245,237,224,0.75);
+      letter-spacing: 0.02em;
+    }
+
+    .impact-text {
+      padding: 48px 52px;
+      background: var(--parchment);
+    }
+
+    .impact-text p {
+      font-family: 'Bitter', serif;
+      font-size: 0.95rem;
+      line-height: 1.9;
+      color: var(--mid);
+      margin-bottom: 16px;
+    }
+
+    .impact-text p:last-child { margin-bottom: 0; }
+
+    /* Ornamental divider */
+    .impact-divider {
+      max-width: 120px;
+      margin: 52px auto;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--coral), transparent);
+      opacity: 0.35;
+    }
+
+    /* Paragraph 3 — centred */
+    .impact-solo {
+      max-width: 720px;
+      margin: 0 auto 80px;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.85s ease 0.1s, transform 0.85s ease 0.1s;
+    }
+
+    .impact-solo.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .impact-solo p {
+      font-family: 'Bitter', serif;
+      font-size: 0.95rem;
+      line-height: 1.9;
+      color: var(--mid);
+    }
+
+    .impact-bottom-pad { height: 80px; }
+
+    /* ── Scrolling ship on right rail ── */
+    .ship-track {
+      position: absolute;
+      right: 14px;
+      top: 0;
+      width: 68px;
+      pointer-events: none;
+      z-index: 3;
+    }
+
+    .ship-track svg {
+      width: 100%;
+      height: auto;
+      opacity: 0.32;
+      filter: sepia(20%);
+    }
+
+    /* ── Side decoration rails — start below page-hero ── */
+    .impact-deco-left,
+    .impact-deco-right {
+      position: absolute;
+      top: 88px;
+      width: 110px;
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.22;
+    }
+
+    .impact-deco-left  { left: 0; }
+    .impact-deco-right { right: 0; }
+
+    .impact-deco-left svg,
+    .impact-deco-right svg {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ── Impact inner wrapper keeps text away from rails ── */
+    .impact-inner {
+      position: relative;
+      z-index: 2;
+      padding: 0 120px;
+    }
+
+    /* Section roman numeral label */
+    #page-figures {
+      background-color: var(--parchment);
+    }
+
+    .figures-showcase {
+      display: flex;
+      height: calc(100vh - 120px);
+      min-height: 520px;
+      overflow: hidden;
+    }
+
+    .figure-card {
+      position: relative;
+      flex: 1;
+      overflow: hidden;
+      cursor: pointer;
+      transition: flex 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+      border-right: 1px solid rgba(46,34,24,0.12);
+    }
+
+    /* Hover cue — subtle warm lift so readers know it's clickable */
+    .figure-card:not(.expanded):hover img {
+      filter: grayscale(10%) sepia(25%) brightness(1.06);
+      transform: scale(1.02);
+    }
+
+    .figure-card:not(.expanded):hover .figure-name {
+      color: #fff;
+      letter-spacing: 0.08em;
+    }
+
+    .figure-card:not(.expanded):hover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border: 2px solid rgba(232,149,127,0.45);
+      z-index: 4;
+      pointer-events: none;
+    }
+
+    .figure-card:last-child { border-right: none; }
+
+    .figure-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      filter: grayscale(30%) sepia(15%);
+      transition: filter 0.5s ease, transform 0.7s ease;
+    }
+
+    .figure-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 45%;
+      background: linear-gradient(to top, rgba(46,34,24,0.75) 0%, transparent 100%);
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+    }
+
+    .figure-name {
+      position: absolute;
+      bottom: 22px;
+      left: 0;
+      right: 0;
+      text-align: center;
+      font-family: 'Young Serif', serif;
+      font-size: 0.85rem;
+      font-style: italic;
+      color: var(--coral-light);
+      letter-spacing: 0.04em;
+      z-index: 2;
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      padding: 0 12px;
+    }
+
+    .figure-card.expanded {
+      flex: 4;
+    }
+
+    .figure-card.expanded img {
+      filter: grayscale(40%) sepia(20%);
+      transform: scale(1.03);
+    }
+
+    .figure-card.expanded .figure-name {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+
+    .figure-card.expanded::after {
+      opacity: 0;
+    }
+
+    .figures-showcase.has-expanded .figure-card:not(.expanded) {
+      flex: 0.3;
+    }
+
+    .figures-showcase.has-expanded .figure-card:not(.expanded) .figure-name {
+      opacity: 0;
+    }
+
+    .figure-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(40,25,15,0.82);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.5s ease 0.2s;
+      z-index: 3;
+      padding: 48px 52px;
+    }
+
+    .figure-card.expanded .figure-overlay {
+      opacity: 1;
+    }
+
+    .figure-overlay-inner {
+      max-width: 560px;
+      text-align: left;
+    }
+
+    .figure-overlay-inner h2 {
+      font-family: 'Young Serif', serif;
+      font-size: 1.5rem;
+      font-style: italic;
+      color: var(--coral-light);
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .figure-overlay-inner p {
+      font-family: 'Bitter', serif;
+      font-size: 0.88rem;
+      line-height: 1.85;
+      color: rgba(245,237,224,0.85);
+    }
+
+    .figure-overlay::before {
+      content: '×';
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      font-family: 'Young Serif', serif;
+      font-size: 1.4rem;
+      color: rgba(232,149,127,0.6);
+      line-height: 1;
+    }
+    /* ══════════════════════════════════
+       TEAM PAGE
+    ══════════════════════════════════ */
+    #page-team {
+      background-color: var(--parchment);
+      min-height: 60vh;
+    }
+
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      max-width: 700px;
+      margin: 60px auto 80px;
+      padding: 0 40px;
+    }
+
+    .team-card {
+      text-align: center;
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .team-card.visible { opacity: 1; transform: translateY(0); }
+    .team-card:nth-child(2) { transition-delay: 0.15s; }
+    .team-card:nth-child(3) { transition-delay: 0.3s; }
+
+    .team-initial {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      background: var(--footer-bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 16px;
+      font-family: 'Young Serif', serif;
+      font-size: 1.6rem;
+      font-style: italic;
+      color: var(--coral-light);
+    }
+
+    .team-card h3 {
+      font-family: 'Young Serif', serif;
+      font-size: 1.1rem;
+      color: var(--dark);
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="site-title" onclick="goHome()">London and the United States</div>
+    <nav>
+      <a onclick="showPage('events', this)">Important Events</a>
+      <a onclick="showPage('figures', this)">Key Figures</a>
+      <a onclick="showPage('impact', this)">Impact</a>
+      <a onclick="showPage('bibliography', this)">Bibliography</a>
+    </nav>
+  </header>
+
+  <!-- HOME PAGE -->
+  <div class="page active" id="page-home">
+    <div class="hero">
+      <img src="mw84907_800x590.jpg" alt="Abolition of the Slave Trade meeting"/>
+      <div class="hero-overlay"></div>
+      <div class="hero-title">The Transatlantic<br>Sisterhood</div>
+      <div class="hero-description">
+        <p>This website explores the role of both American and British women in their combined fight for the abolition of slavery. Enjoy reading of the figures involved, their transatlantic impact and the key events which shaped their involvement in the movement…</p>
+      </div>
+    </div>
+    <!-- Caption only on home page -->
+    <div class="img-caption">
+      <span class="caption-title">'The Abolition of the Slave Trade'</span>
+      <span class="caption-divider">—</span>
+      <span class="caption-sub">The Anti-Slavery Society Convention, 1840</span>
+    </div>
+  </div>
+
+  <!-- IMPORTANT EVENTS PAGE -->
+  <div class="page" id="page-events">
+    <div class="page-hero"><h1>Important Events</h1></div>
+
+    <div class="book-scene">
+
+      <!-- Closed book cover -->
+      <div class="book-cover" id="bookCover" onclick="openBook()">
+        <div class="book-cover-title">Important Events</div>
+        <div class="book-cover-ornament"></div>
+        <div class="book-cover-sub">The Transatlantic Sisterhood</div>
+        <div class="book-cover-hint">click to open</div>
+      </div>
+
+      <!-- Open spread -->
+      <div class="book-spread" id="bookSpread">
+
+        <!-- Page 1 -->
+        <div class="book-page active" id="book-page-1">
+          <div class="book-left">
+            <img src="PIC1.png" alt="Event 1" onclick="openBookImage(this, event)"/>
+          </div>
+          <div class="book-right">
+            <div class="book-right-inner">
+              <div class="book-page-num">Event I</div>
+              <h2>Placeholder Event Title</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+          </div>
+          <div class="book-page-hotspot prev" onclick="event.stopPropagation(); bookTurn(-1)"></div>
+          <div class="book-page-hotspot next" onclick="event.stopPropagation(); bookTurn(1)"></div>
+        </div>
+
+        <!-- Page 2 -->
+        <div class="book-page" id="book-page-2">
+          <div class="book-left">
+            <img src="PIC2.jpg" alt="Event 2" onclick="openBookImage(this, event)"/>
+          </div>
+          <div class="book-right">
+            <div class="book-right-inner">
+              <div class="book-page-num">Event II</div>
+              <h2>Placeholder Event Title</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+          </div>
+          <div class="book-page-hotspot prev" onclick="event.stopPropagation(); bookTurn(-1)"></div>
+          <div class="book-page-hotspot next" onclick="event.stopPropagation(); bookTurn(1)"></div>
+        </div>
+
+        <!-- Page 3 -->
+        <div class="book-page" id="book-page-3">
+          <div class="book-left">
+            <img src="PIC3.jpg" alt="Event 3" onclick="openBookImage(this, event)"/>
+          </div>
+          <div class="book-right">
+            <div class="book-right-inner">
+              <div class="book-page-num">Event III</div>
+              <h2>Placeholder Event Title</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+          </div>
+          <div class="book-page-hotspot prev" onclick="event.stopPropagation(); bookTurn(-1)"></div>
+          <div class="book-page-hotspot next" onclick="event.stopPropagation(); bookTurn(1)"></div>
+        </div>
+
+        <!-- Page 4 -->
+        <div class="book-page" id="book-page-4">
+          <div class="book-left">
+            <img src="PIC4.jpg" alt="Event 4" onclick="openBookImage(this, event)"/>
+          </div>
+          <div class="book-right">
+            <div class="book-right-inner">
+              <div class="book-page-num">Event IV</div>
+              <h2>Placeholder Event Title</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+          </div>
+          <div class="book-page-hotspot prev" onclick="event.stopPropagation(); bookTurn(-1)"></div>
+          <div class="book-page-hotspot next" onclick="event.stopPropagation(); bookTurn(1)"></div>
+        </div>
+
+        <!-- Page 5 -->
+        <div class="book-page" id="book-page-5">
+          <div class="book-left sketch-blend">
+            <img src="PIC5.jpg" alt="Event 5" onclick="openBookImage(this, event)"/>
+          </div>
+          <div class="book-right">
+            <div class="book-right-inner">
+              <div class="book-page-num">Event V</div>
+              <h2>Placeholder Event Title</h2>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+            </div>
+          </div>
+          <div class="book-page-hotspot prev" onclick="event.stopPropagation(); bookTurn(-1)"></div>
+          <div class="book-page-hotspot next" onclick="event.stopPropagation(); bookTurn(1)"></div>
+        </div>
+
+        <div class="book-close-btn" onclick="closeBook()">close book</div>
+
+      </div><!-- /book-spread -->
+    </div><!-- /book-scene -->
+
+    <div class="book-lightbox" id="bookLightbox" onclick="closeBookLightbox(event)">
+      <div class="book-lightbox-close" onclick="closeBookLightbox(event)">×</div>
+      <img id="bookLightboxImg" src="" alt="Expanded event image"/>
+    </div>
+  </div>
+
+  <!-- KEY FIGURES PAGE -->
+  <div class="page" id="page-figures">
+    <div class="page-hero"><h1>Key Figures</h1></div>
+    <div class="figures-showcase">
+
+      <div class="figure-card" onclick="expandFigure(this)">
+        <img src="William Lloyd Garrison.jpg" alt="William Lloyd Garrison"/>
+        <div class="figure-name">William Lloyd Garrison</div>
+        <div class="figure-overlay">
+          <div class="figure-overlay-inner">
+            <h2>William Lloyd Garrison</h2>
+            <p>William Lloyd Garrison was the leader of the American Anti-Slavery Society (AASS) who encouraged female leadership and appointed seven female delegates to attend the first World Anti-Slavery Convention in 1840. These delegates were known as Garrisonians. Garrison urged many women to attend the World Slavery Conference. He encouraged American women to come to London, where Elizabeth Heyrick "enkindled a blaze which unfolded new scenes of action, and pointed new paths of duty."</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="figure-card" onclick="expandFigure(this)">
+        <img src="elizabeth heyrick.jpg" alt="Elizabeth Heyrick"/>
+        <div class="figure-name">Elizabeth Heyrick</div>
+        <div class="figure-overlay">
+          <div class="figure-overlay-inner">
+            <h2>Elizabeth Heyrick</h2>
+            <p>Elizabeth Heyrick was an influential, radical reformer and writer with huge influence in the British movement for abolition in the United States. Heyrick organised successful boycotts on slave-produced goods and was a leading figure in the abstention movement. Furthermore, Heyrick writes of the importance of granting civil liberties and rights following emancipation. This then radical ideology was shared among many female reformers within the transatlantic sisterhood. One of Heyricks most significant contributions, was her emphasis on economic strategy, describing consumption as "a social act with consequences that resonated throughout the Atlantic world". Elizabeth Heyrick could recognise that what may seem like small actions made in London could have huge transatlantic repercussions.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="figure-card" onclick="expandFigure(this)">
+        <img src="Lucretia Mott.jpg" alt="Lucretia Mott"/>
+        <div class="figure-name">Lucretia Mott</div>
+        <div class="figure-overlay">
+          <div class="figure-overlay-inner">
+            <h2>Lucretia Mott</h2>
+            <p>Lucretia Mott was a quaker minister and leader of the American female delegates in London. Kathyrn Kish Sklar argues that the diary of Lucrecia Mott is one of the best lenses by which to study the female attendance of the World Anti-Slavery Convention. She wrote of her frustration at having spent a month crossing the Atlantic, and years defending their rights only to be turned away – it fuelled the fire of her motivation. Furthermore, it was at the first World Anti-Slavery convention in London where Lucretia Mott first met Elizabeth Cady Stanton. The two became close friends and went on to organise conventions for women's rights. This displays the transatlantic sisterhood as something of personal connection in addition to ideological exchange. London and the Anti-Slavery convention proved to be a catalytic event for civil rights in America.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="figure-card" onclick="expandFigure(this)">
+        <img src="Elizabeth Cady Stanton.jpg" alt="Elizabeth Cady Stanton"/>
+        <div class="figure-name">Elizabeth Cady Stanton</div>
+        <div class="figure-overlay">
+          <div class="figure-overlay-inner">
+            <h2>Elizabeth Cady Stanton</h2>
+            <p>Elizabeth Cady Stanton was a pioneering American suffragist and abolitionist whose encounter with exclusion at the 1840 World Anti-Slavery Convention in London proved transformative. Meeting Lucretia Mott there, the two forged a lifelong friendship that would go on to shape the American women's rights movement. Their shared experience of being barred from full participation crystallised Stanton's conviction that the causes of abolition and women's emancipation were inseparable.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="figure-card" onclick="expandFigure(this)">
+        <img src="Elizabeth Pease.jpg" alt="Elizabeth Pease"/>
+        <div class="figure-name">Elizabeth Pease</div>
+        <div class="figure-overlay">
+          <div class="figure-overlay-inner">
+            <h2>Elizabeth Pease</h2>
+            <p>Elizabeth Pease was an English abolitionist who was a Garrisonian before the convention in London. Pease attempted to organise separate female conferences to meet formally with their American sisters; however, she was obstructed by leaders of the British Foreign Anti-Slavery Society. She wrote of the American visit to London that "every obstacle was thrown in the way and no public opportunity was ever afforded them for a free interchange with their English sisters". Pease maintained extensive correspondence with American Garrisonians and understood that a radical transatlantic abolitionist network was needed in order to achieve an end to slavery.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- IMPACT PAGE -->
+  <div class="page" id="page-impact">
+
+    <div class="page-hero"><h1>Impact</h1></div>
+
+    <!-- LEFT decorative rail: chain + vine + cameo + quill -->
+    <div class="impact-deco-left">
+      <svg viewBox="0 0 110 1400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin meet">
+        <!-- Vine stem running full height -->
+        <path d="M55 0 C45 80 65 160 50 240 C35 320 65 400 50 500 C35 600 60 680 50 780 C40 880 60 960 50 1060 C40 1160 58 1260 55 1400"
+              fill="none" stroke="#3a2e28" stroke-width="1.8" opacity="0.7"/>
+        <!-- Leaf clusters -->
+        <ellipse cx="38" cy="100" rx="12" ry="5" fill="#3a2e28" opacity="0.5" transform="rotate(-30 38 100)"/>
+        <ellipse cx="68" cy="180" rx="11" ry="4" fill="#3a2e28" opacity="0.5" transform="rotate(25 68 180)"/>
+        <ellipse cx="35" cy="290" rx="13" ry="5" fill="#3a2e28" opacity="0.5" transform="rotate(-20 35 290)"/>
+        <ellipse cx="70" cy="370" rx="10" ry="4" fill="#3a2e28" opacity="0.45" transform="rotate(35 70 370)"/>
+        <ellipse cx="38" cy="460" rx="12" ry="5" fill="#3a2e28" opacity="0.5" transform="rotate(-25 38 460)"/>
+        <ellipse cx="66" cy="560" rx="11" ry="4" fill="#3a2e28" opacity="0.45" transform="rotate(20 66 560)"/>
+        <ellipse cx="38" cy="650" rx="13" ry="5" fill="#3a2e28" opacity="0.5" transform="rotate(-30 38 650)"/>
+        <ellipse cx="68" cy="750" rx="10" ry="4" fill="#3a2e28" opacity="0.4" transform="rotate(28 68 750)"/>
+        <ellipse cx="40" cy="860" rx="12" ry="5" fill="#3a2e28" opacity="0.45" transform="rotate(-22 40 860)"/>
+        <ellipse cx="65" cy="960" rx="11" ry="4" fill="#3a2e28" opacity="0.45" transform="rotate(30 65 960)"/>
+        <ellipse cx="40" cy="1060" rx="13" ry="5" fill="#3a2e28" opacity="0.5" transform="rotate(-20 40 1060)"/>
+        <ellipse cx="68" cy="1160" rx="10" ry="4" fill="#3a2e28" opacity="0.4" transform="rotate(25 68 1160)"/>
+        <!-- Cameo oval at ~350 -->
+        <ellipse cx="55" cy="350" rx="28" ry="36" fill="none" stroke="#3a2e28" stroke-width="2" opacity="0.8"/>
+        <ellipse cx="55" cy="350" rx="22" ry="30" fill="#f0e6d3" stroke="#3a2e28" stroke-width="1" opacity="0.9"/>
+        <!-- Simple profile silhouette inside cameo -->
+        <path d="M55 330 C62 330 66 336 65 344 C64 352 58 356 55 358 C52 356 46 352 45 344 C44 336 48 330 55 330 Z"
+              fill="#3a2e28" opacity="0.5"/>
+        <path d="M55 358 C50 360 47 365 47 370 L63 370 C63 365 60 360 55 358 Z"
+              fill="#3a2e28" opacity="0.4"/>
+        <!-- Small scroll at ~700 -->
+        <rect x="40" y="690" width="30" height="22" rx="3" fill="#f0e6d3" stroke="#3a2e28" stroke-width="1.5" opacity="0.8"/>
+        <path d="M43 697 L67 697 M43 702 L67 702 M43 707 L60 707" stroke="#3a2e28" stroke-width="0.8" opacity="0.6"/>
+        <path d="M40 690 Q36 701 40 712" fill="none" stroke="#3a2e28" stroke-width="1.5" opacity="0.7"/>
+        <path d="M70 690 Q74 701 70 712" fill="none" stroke="#3a2e28" stroke-width="1.5" opacity="0.7"/>
+        <!-- Quill at ~1050 -->
+        <path d="M65 1020 C55 1035 48 1055 52 1080 C54 1090 56 1095 55 1100"
+              fill="none" stroke="#3a2e28" stroke-width="1.2" opacity="0.7"/>
+        <path d="M65 1020 C75 1025 78 1038 72 1050 C68 1058 60 1062 55 1100 C50 1062 45 1055 48 1044 C51 1033 58 1022 65 1020 Z"
+              fill="#3a2e28" opacity="0.25"/>
+        <!-- Small flowers -->
+        <circle cx="55" cy="220" r="5" fill="#e07a5f" opacity="0.4"/>
+        <circle cx="55" cy="220" r="2" fill="#3a2e28" opacity="0.5"/>
+        <circle cx="55" cy="530" r="4" fill="#e07a5f" opacity="0.35"/>
+        <circle cx="55" cy="530" r="1.5" fill="#3a2e28" opacity="0.5"/>
+        <circle cx="55" cy="830" r="5" fill="#e07a5f" opacity="0.35"/>
+        <circle cx="55" cy="830" r="2" fill="#3a2e28" opacity="0.45"/>
+        <circle cx="55" cy="1130" r="4" fill="#e07a5f" opacity="0.3"/>
+        <circle cx="55" cy="1130" r="1.5" fill="#3a2e28" opacity="0.4"/>
+      </svg>
+    </div>
+
+    <!-- RIGHT scrolling ship decoration (static ornamental trail) -->
+    <div class="impact-deco-right">
+      <svg viewBox="0 0 110 1400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMin meet">
+        <!-- Dotted wave trail running full height -->
+        <path d="M55 0 C65 80 45 160 60 240 C75 320 45 400 60 500 C75 600 50 680 60 780 C70 880 50 960 60 1060 C70 1160 52 1260 55 1400"
+              fill="none" stroke="#3a2e28" stroke-width="1.5" stroke-dasharray="4 6" opacity="0.55"/>
+        <!-- Sparkle dots -->
+        <circle cx="72" cy="130" r="2" fill="#3a2e28" opacity="0.4"/>
+        <circle cx="40" cy="210" r="1.5" fill="#3a2e28" opacity="0.35"/>
+        <circle cx="75" cy="310" r="2" fill="#3a2e28" opacity="0.4"/>
+        <circle cx="42" cy="420" r="1.5" fill="#3a2e28" opacity="0.35"/>
+        <circle cx="72" cy="520" r="2" fill="#3a2e28" opacity="0.38"/>
+        <circle cx="40" cy="630" r="1.5" fill="#3a2e28" opacity="0.35"/>
+        <circle cx="74" cy="730" r="2" fill="#3a2e28" opacity="0.4"/>
+        <circle cx="42" cy="840" r="1.5" fill="#3a2e28" opacity="0.35"/>
+        <circle cx="72" cy="940" r="2" fill="#3a2e28" opacity="0.38"/>
+        <circle cx="40" cy="1050" r="1.5" fill="#3a2e28" opacity="0.3"/>
+        <circle cx="72" cy="1150" r="2" fill="#3a2e28" opacity="0.35"/>
+        <!-- Ship at top of trail (~180) -->
+        <g transform="translate(32, 150)" opacity="0.85">
+          <!-- Hull -->
+          <path d="M5 28 Q23 34 44 28 L40 20 L8 20 Z" fill="#3a2e28" opacity="0.6"/>
+          <rect x="11" y="8" width="1.8" height="14" fill="#3a2e28" opacity="0.7"/>
+          <rect x="22" y="4" width="1.8" height="17" fill="#3a2e28" opacity="0.7"/>
+          <rect x="33" y="8" width="1.8" height="13" fill="#3a2e28" opacity="0.65"/>
+          <!-- Sails -->
+          <path d="M12.9 8 C17 12 17 18 12.9 22 Z" fill="#f0e6d3" stroke="#3a2e28" stroke-width="0.8" opacity="0.8"/>
+          <path d="M23.8 4 C29 9 29 16 23.8 21 Z" fill="#f0e6d3" stroke="#3a2e28" stroke-width="0.8" opacity="0.85"/>
+          <path d="M34.8 8 C39 12 39 17 34.8 21 Z" fill="#f0e6d3" stroke="#3a2e28" stroke-width="0.8" opacity="0.75"/>
+          <!-- Waves beneath -->
+          <path d="M2 32 Q8 29 14 32 Q20 35 26 32 Q32 29 38 32 Q44 35 50 32"
+                fill="none" stroke="#3a2e28" stroke-width="1" opacity="0.45"/>
+          <path d="M4 36 Q10 33 16 36 Q22 39 28 36 Q34 33 40 36 Q46 39 48 36"
+                fill="none" stroke="#3a2e28" stroke-width="0.8" opacity="0.3"/>
+        </g>
+        <!-- Second smaller ship at ~650 -->
+        <g transform="translate(36, 625) scale(0.7)" opacity="0.7">
+          <path d="M5 28 Q23 34 44 28 L40 20 L8 20 Z" fill="#3a2e28" opacity="0.55"/>
+          <rect x="11" y="8" width="1.8" height="14" fill="#3a2e28" opacity="0.65"/>
+          <rect x="22" y="4" width="1.8" height="17" fill="#3a2e28" opacity="0.65"/>
+          <rect x="33" y="8" width="1.8" height="13" fill="#3a2e28" opacity="0.6"/>
+          <path d="M12.9 8 C17 12 17 18 12.9 22 Z" fill="#f0e6d3" stroke="#3a2e28" stroke-width="0.8" opacity="0.75"/>
+          <path d="M23.8 4 C29 9 29 16 23.8 21 Z" fill="#f0e6d3" stroke="#3a2e28" stroke-width="0.8" opacity="0.8"/>
+          <path d="M34.8 8 C39 12 39 17 34.8 21 Z" fill="#f0e6d3" stroke="#3a2e28" stroke-width="0.8" opacity="0.7"/>
+          <path d="M2 32 Q8 29 14 32 Q20 35 26 32 Q32 29 38 32 Q44 35 50 32"
+                fill="none" stroke="#3a2e28" stroke-width="1" opacity="0.4"/>
+        </g>
+        <!-- Third tiny ship at ~1100 -->
+        <g transform="translate(38, 1080) scale(0.55)" opacity="0.6">
+          <path d="M5 28 Q23 34 44 28 L40 20 L8 20 Z" fill="#3a2e28" opacity="0.5"/>
+          <rect x="11" y="8" width="1.8" height="14" fill="#3a2e28" opacity="0.6"/>
+          <rect x="22" y="4" width="1.8" height="17" fill="#3a2e28" opacity="0.6"/>
+          <rect x="33" y="8" width="1.8" height="13" fill="#3a2e28" opacity="0.55"/>
+          <path d="M12.9 8 C17 12 17 18 12.9 22 Z" fill="#f0e6d3" stroke="#3a2e28" stroke-width="0.8" opacity="0.7"/>
+          <path d="M23.8 4 C29 9 29 16 23.8 21 Z" fill="#f0e6d3" stroke="#3a2e28" stroke-width="0.8" opacity="0.75"/>
+          <path d="M34.8 8 C39 12 39 17 34.8 21 Z" fill="#f0e6d3" stroke="#3a2e28" stroke-width="0.8" opacity="0.65"/>
+          <path d="M2 32 Q8 29 14 32 Q20 35 26 32 Q32 29 38 32 Q44 35 50 32"
+                fill="none" stroke="#3a2e28" stroke-width="1" opacity="0.35"/>
+        </g>
+        <!-- Swirling end flourish -->
+        <path d="M55 1340 C45 1355 50 1370 55 1375 C60 1380 68 1375 65 1365 C62 1355 55 1340 55 1340 Z"
+              fill="none" stroke="#3a2e28" stroke-width="1.5" opacity="0.4"/>
+      </svg>
+    </div>
+
+    <!-- Scrolling ship that follows page scroll -->
+    <div class="ship-track" id="shipTrack">
+      <svg viewBox="0 0 74 60" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 46 Q37 54 68 46 L62 32 L12 32 Z" fill="#3a2e28"/>
+        <rect x="17" y="10" width="2.5" height="24" fill="#3a2e28"/>
+        <rect x="34" y="4" width="2.5" height="28" fill="#3a2e28"/>
+        <rect x="51" y="10" width="2.5" height="22" fill="#3a2e28"/>
+        <path d="M19.5 10 C27 17 27 27 19.5 34 Z" fill="#f0e6d3" stroke="#3a2e28" stroke-width="1"/>
+        <path d="M36.5 4 C46 12 46 24 36.5 32 Z" fill="#f0e6d3" stroke="#3a2e28" stroke-width="1"/>
+        <path d="M53.5 10 C61 17 61 26 53.5 32 Z" fill="#f0e6d3" stroke="#3a2e28" stroke-width="1"/>
+        <path d="M3 52 Q12 47 21 52 Q30 57 39 52 Q48 47 57 52 Q66 57 71 52"
+              fill="none" stroke="#3a2e28" stroke-width="1.5"/>
+        <path d="M5 58 Q14 53 23 58 Q32 63 41 58 Q50 53 59 58 Q65 63 69 58"
+              fill="none" stroke="#3a2e28" stroke-width="1" opacity="0.5"/>
+      </svg>
+    </div>
+
+    <!-- Content wrapper (padded inward from rails) -->
+    <div class="impact-inner">
+
+      <!-- I -->
+      <div class="impact-label"><span>I</span></div>
+
+      <div class="impact-block">
+        <div class="impact-img-wrap">
+          <img src="abolition.gif" alt="Immediate, Not Gradual Abolition pamphlet"/>
+          <div class="impact-img-caption">Elizabeth Heyrick, <em>Immediate, Not Gradual Abolition</em>, republished Boston 1838</div>
+        </div>
+        <div class="impact-text">
+          <p>The transatlantic sisterhood brought British and American women together who pushed abolition in newer and more imaginative ways - many of these connections running directly through London. Elizabeth Heyrick was one of the most influential early voices within this movement, whose 1824 pamphlet 'Immediate, Not Gradual Abolition' called for the immediate end of slavery in the British West Indies and significantly shifted abolitionist thinking in Britain away from cautious gradualism.</p>
+          <p>What made Heyrick particularly significant in the bigger picture of the transatlantic sisterhood was how widely her message travelled. In 1836, her pamphlet was republished in the United States by the Philadelphia Ladies' Anti-Slavery Society, which believed that Heyrick's arguments were similarly relevant to slavery in the United States. These cases of British and American reading the same texts and sharing strategies evidences how abolitionist ideas circulated between women's networks both in Britain and the Untied States. Rather than acting separately, they were building a connected movement that approached abolition as a shared international responsibility.</p>
+          <p>Heyrick's emphasis on everyday activism, particularly through consumer boycotts became a model for many women's groups. She campaigned in Leicester to persuade grocers to stop selling slave-produced sugar and encouraged the public to pressure the slave economy through spending choices. Similar tactics to these started to be used by American free‑produce societies, showing how Heyrick's ideas spread across the Atlantic and shaped practical abolitionist work. This approach helped women gain political influence at a time when they were excluded from formal politics.</p>
+        </div>
+      </div>
+
+      <div class="impact-divider"></div>
+
+      <!-- II -->
+      <div class="impact-label"><span>II</span></div>
+
+      <div class="impact-block reverse">
+        <div class="impact-img-wrap">
+          <img src="convention.jpg" alt="The Anti-Slavery Society Convention, 1840"/>
+          <div class="impact-img-caption">The Anti-Slavery Society Convention, London, 1840</div>
+        </div>
+        <div class="impact-text">
+          <p>London served as a key meeting place for many of these transatlantic exchanges. It served as home to the Ladies' London Emancipation Society, which formed in 1863 with the primary goal of supporting the abolition of slavery in the United States. Simultaneously, American activists like Sarah Parker Remond travelled to London to speak publicly against U.S. slavery. Her lectures were widely reported in the London press which helped bring American slavery experiences directly into British public debate and strengthened support for American abolition.</p>
+          <p>Another major London‑US link came in 1840, when the first World Anti‑Slavery Convention was held in London. This event brought together delegates from across the Atlantic but also helped expose deep gender inequalities. The American women who had travelled to London were refused full participation by the British and Foreign Anti‑Slavery Society. London newspapers covered the controversy, and the incident energised women on both sides of the Atlantic to organise more independently, and these shared experiences of exclusion became a foundation for stronger cooperation rather than division.</p>
+        </div>
+      </div>
+
+      <div class="impact-divider"></div>
+
+      <!-- III -->
+      <div class="impact-label"><span>III</span></div>
+
+      <div class="impact-solo">
+        <p>The transatlantic sisterhood ultimately created a network which linked London to United States anti‑slavery activism. It achieved this by sharing texts and organisational tactics. Heyrick helped set the moral tone by insisting on immediate emancipation, while women in both London and the U.S. carried these ideas across the Atlantic, turning abolition into a coordinated international effort rooted in moral conviction and collective action.</p>
+      </div>
+
+    </div><!-- /impact-inner -->
+
+    <div class="impact-bottom-pad"></div>
+  </div>
+
+  <!-- BIBLIOGRAPHY PAGE -->
+  <div class="page" id="page-bibliography">
+    <div class="page-hero"><h1>Bibliography</h1></div>
+  </div>
+
+  <!-- TEAM PAGE -->
+  <div class="page" id="page-team">
+    <div class="page-hero"><h1>The Team</h1></div>
+    <div class="team-grid">
+      <div class="team-card">
+        <div class="team-initial">F</div>
+        <h3>Fran</h3>
+      </div>
+      <div class="team-card">
+        <div class="team-initial">P</div>
+        <h3>Piti</h3>
+      </div>
+      <div class="team-card">
+        <div class="team-initial">C</div>
+        <h3>Callum</h3>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-title">The Transatlantic Sisterhood</div>
+        <div class="footer-authors">By Fran, Piti and Callum</div>
+      </div>
+      <div class="footer-nav">
+        <h4>Pages</h4>
+        <ul>
+          <li><a onclick="showPage('events', document.querySelectorAll('nav a')[0])">Important Events</a></li>
+          <li><a onclick="showPage('figures', document.querySelectorAll('nav a')[1])">Key Figures</a></li>
+          <li><a onclick="showPage('impact', document.querySelectorAll('nav a')[2])">Impact</a></li>
+          <li><a onclick="showPage('bibliography', document.querySelectorAll('nav a')[3])">Bibliography</a></li>
+        </ul>
+      </div>
+      <div class="footer-nav">
+        <h4>About</h4>
+        <ul>
+          <li><a>London and the United States</a></li>
+        </ul>
+        <div class="footer-team-btn" onclick="showPage('team', null)">The Team</div>
+      </div>
+    </div>
+    <div class="footer-bottom"></div>
+  </footer>
+
+  <script>
+    const pageMap = {
+      'events':       'page-events',
+      'figures':      'page-figures',
+      'impact':       'page-impact',
+      'bibliography': 'page-bibliography',
+      'team':         'page-team'
+    };
+
+    function showPage(pageKey, linkEl) {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById(pageMap[pageKey]).classList.add('active');
+      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+      if (linkEl) linkEl.classList.add('active');
+      window.scrollTo(0, 0);
+      if (pageKey === 'impact' || pageKey === 'team') setTimeout(observeAnimated, 100);
+      if (pageKey === 'impact') setupShip();
+      if (pageKey !== 'events') closeBook();
+    }
+
+    function goHome() {
+      document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+      document.getElementById('page-home').classList.add('active');
+      document.querySelectorAll('nav a').forEach(a => a.classList.remove('active'));
+      window.scrollTo(0, 0);
+      window.removeEventListener('scroll', shipScroll);
+    }
+
+    function observeAnimated() {
+      const targets = document.querySelectorAll('.impact-block, .impact-solo, .team-card');
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('visible');
+        });
+      }, { threshold: 0.1 });
+      targets.forEach(t => observer.observe(t));
+    }
+
+    // ── BOOK ──
+    let currentBookPage = 1;
+    const totalBookPages = 5;
+    let isBookAnimating = false;
+
+    function openBook() {
+      document.getElementById('bookCover').style.display = 'none';
+      const spread = document.getElementById('bookSpread');
+      spread.classList.add('open');
+      currentBookPage = 1;
+      showBookPage(currentBookPage);
+    }
+
+    function closeBook() {
+      document.getElementById('bookCover').style.display = 'flex';
+      document.getElementById('bookSpread').classList.remove('open');
+      closeBookLightbox();
+      document.querySelectorAll('.book-page').forEach(p => {
+        p.classList.remove('active', 'turn-next-out', 'turn-prev-out', 'turn-next-in', 'turn-prev-in');
+      });
+    }
+
+    function showBookPage(pageNum) {
+      document.querySelectorAll('.book-page').forEach((p, idx) => {
+        const isActive = idx + 1 === pageNum;
+        p.classList.toggle('active', isActive);
+      });
+      updateBookHotspots();
+    }
+
+    function updateBookHotspots() {
+      document.querySelectorAll('.book-page').forEach((page, idx) => {
+        const pageNum = idx + 1;
+        const prev = page.querySelector('.book-page-hotspot.prev');
+        const next = page.querySelector('.book-page-hotspot.next');
+        if (prev) prev.classList.toggle('disabled', pageNum === 1);
+        if (next) next.classList.toggle('disabled', pageNum === totalBookPages);
+      });
+    }
+
+    function bookTurn(dir) {
+      if (isBookAnimating) return;
+      const next = currentBookPage + dir;
+      if (next < 1 || next > totalBookPages) return;
+
+      const currentPageEl = document.getElementById('book-page-' + currentBookPage);
+      const nextPageEl = document.getElementById('book-page-' + next);
+      const outClass = dir > 0 ? 'turn-next-out' : 'turn-prev-out';
+      const inClass = dir > 0 ? 'turn-next-in' : 'turn-prev-in';
+
+      isBookAnimating = true;
+      nextPageEl.classList.add(inClass);
+      nextPageEl.classList.add('active');
+      currentPageEl.classList.add(outClass);
+
+      window.setTimeout(() => {
+        currentPageEl.classList.remove('active', 'turn-next-out', 'turn-prev-out');
+        nextPageEl.classList.remove('turn-next-in', 'turn-prev-in');
+        currentBookPage = next;
+        updateBookHotspots();
+        isBookAnimating = false;
+      }, 600);
+    }
+
+    function openBookImage(imgEl, event) {
+      event.stopPropagation();
+      const lightbox = document.getElementById('bookLightbox');
+      const lightboxImg = document.getElementById('bookLightboxImg');
+      lightboxImg.src = imgEl.src;
+      lightboxImg.alt = imgEl.alt;
+      lightbox.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeBookLightbox(event) {
+      if (event && event.target && event.target !== event.currentTarget && !event.target.classList.contains('book-lightbox-close')) return;
+      const lightbox = document.getElementById('bookLightbox');
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape') closeBookLightbox();
+    });
+
+    function expandFigure(card) {
+      const showcase = card.closest('.figures-showcase');
+      const isExpanded = card.classList.contains('expanded');
+      showcase.querySelectorAll('.figure-card').forEach(c => c.classList.remove('expanded'));
+      showcase.classList.remove('has-expanded');
+      if (!isExpanded) {
+        card.classList.add('expanded');
+        showcase.classList.add('has-expanded');
+      }
+    }
+
+    // Ship follows scroll on impact page — stays within page, below header
+    function setupShip() {
+      window.removeEventListener('scroll', shipScroll);
+      window.addEventListener('scroll', shipScroll);
+      shipScroll();
+    }
+
+    function shipScroll() {
+      const page = document.getElementById('page-impact');
+      if (!page || !page.classList.contains('active')) return;
+      const ship = document.getElementById('shipTrack');
+      if (!ship) return;
+
+      const pageRect = page.getBoundingClientRect();
+      const pageTop = pageRect.top + window.scrollY;
+      const pageH = page.offsetHeight;
+      const headerH = 88; // height of page-hero banner
+      const shipH = ship.offsetHeight || 60;
+      const maxTop = pageH - shipH - 20;
+
+      const scrolled = window.scrollY - pageTop;
+      const scrollRange = pageH - window.innerHeight;
+      const progress = Math.max(0, Math.min(1, scrolled / Math.max(scrollRange, 1)));
+
+      const minTop = headerH + 10;
+      const newTop = minTop + progress * (maxTop - minTop);
+      ship.style.top = Math.min(newTop, maxTop) + 'px';
+    }
+  </script>
+</body>
+</html>
